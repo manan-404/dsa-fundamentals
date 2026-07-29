@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class RowMagicCheck {
+public class ColumnMagicCheck {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -20,19 +20,19 @@ public class RowMagicCheck {
             System.out.println();
         }
 
-        int firstRowSum = 0;
-        for (int val : arr[0]) firstRowSum += val;
+        int firstColSum = 0;
+        for (int i = 0; i < arr.length; i++) firstColSum += arr[i][0];
 
-        boolean isRowMagic = true;
-        for (int i = 1; i < arr.length; i++) {
-            int rowSum = 0;
-            for (int val : arr[i]) rowSum += val;
-            if (rowSum != firstRowSum) {
-                isRowMagic = false;
+        boolean isColumnMagic = true;
+        for (int col = 1; col < arr[0].length; col++) {
+            int colSum = 0;
+            for (int i = 0; i < arr.length; i++) colSum += arr[i][col];
+            if (colSum != firstColSum) {
+                isColumnMagic = false;
                 break;
             }
         }
 
-        System.out.println(isRowMagic ? "The array is Row-Magic" : "The array is not Row-Magic");
+        System.out.println(isColumnMagic ? "The array is Column-Magic" : "The array is not Column-Magic");
     }
 }
