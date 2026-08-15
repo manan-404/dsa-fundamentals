@@ -65,5 +65,5 @@ public class arrayQueue {
         queue.enQueue(40);
         System.out.println("Size: " + queue.getSize());
         queue.printAll();
-    }
+    } 
 }
