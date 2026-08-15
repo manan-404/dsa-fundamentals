@@ -1,0 +1,69 @@
+public class arrayQueue {
+
+    int[] arr;
+    int front, rear, size;
+
+    arrayQueue(int capacity) {
+        arr = new int[capacity];
+        front = -1;
+        rear = -1;
+        size = 0;
+    }
+
+    void enQueue(int data) {
+        if (isFull()) {
+            System.out.println("The queue is full.");
+            return;
+        }
+        if (isEmpty()) front = 0;
+        rear = (rear + 1) % arr.length;
+        arr[rear] = data;
+        size++;
+        System.out.println(data + " added at index " + rear);
+    }
+
+    int deQueue() {
+        if (isEmpty()) {
+            System.out.println("The queue is empty.");
+            return -1;
+        }
+        int temp = arr[front];
+        if (front == rear) {
+            front = rear = -1;
+        } else {
+            front = (front + 1) % arr.length;
+        }
+        size--;
+        return temp;
+    }
+
+    boolean isEmpty() { return size == 0; }
+    boolean isFull() { return size == arr.length; }
+    int getSize() { return size; }
+
+    void printAll() {
+        if (isEmpty()) {
+            System.out.println("The queue is empty.");
+            return;
+        }
+        int i = front, count = 0;
+        System.out.print("Queue (front to rear): ");
+        while (count < size) {
+            System.out.print(arr[i] + " ");
+            i = (i + 1) % arr.length;
+            count++;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        arrayQueue queue = new arrayQueue(3);
+        queue.enQueue(10);
+        queue.enQueue(20);
+        System.out.println("Removed: " + queue.deQueue());
+        queue.enQueue(30);
+        queue.enQueue(40);
+        System.out.println("Size: " + queue.getSize());
+        queue.printAll();
+    }
+}
